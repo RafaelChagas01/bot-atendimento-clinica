@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bot de atendimento para clínica | demonstração</title>
+  <meta name="description" content="Demonstração de um bot de atendimento para WhatsApp: tira dúvidas da clínica, recebe pedidos de consulta e passa a conversa para a recepção.">
+  <meta name="theme-color" content="#0E5E57">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230E5E57'/%3E%3Cpath d='M9 11h14a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-8l-4 3v-3h-2a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2z' fill='white'/%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="demo.css">
+</head>
+<body>
+
+  <div class="page">
+
+    <header class="intro">
+      <h1>Bot de atendimento para clínica</h1>
+      <p>
+        Uma clínica recebe as mesmas perguntas o dia todo: aceita meu convênio, quanto custa, que horas abre.
+        Esse bot responde essas dúvidas no WhatsApp, anota pedidos de consulta e passa a conversa pra recepção quando precisa de uma pessoa.
+      </p>
+      <p class="fine">
+        A Odonto Prado é fictícia. Aqui o chat roda no navegador; o mesmo código atende pelo webhook oficial do WhatsApp.
+      </p>
+
+      <div class="try">
+        <p>Experimente mandar:</p>
+        <div class="suggestions" id="suggestions">
+          <button type="button">vocês aceitam unimed?</button>
+          <button type="button">quanto custa a limpeza?</button>
+          <button type="button">quero marcar uma consulta</button>
+          <button type="button">meu filho de 5 anos pode ser atendido?</button>
+          <button type="button">to com dor de dente</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="chat" aria-label="Conversa com o bot">
+      <div class="chat-head">
+        <div class="avatar" aria-hidden="true">OP</div>
+        <div>
+          <p class="chat-name">Odonto Prado</p>
+          <p class="chat-sub" id="mode">atendimento automático</p>
+        </div>
+        <button type="button" class="restart" id="restart">Recomeçar</button>
+      </div>
+
+      <ol class="messages" id="messages" aria-live="polite"></ol>
+
+      <form class="composer" id="composer">
+        <label class="visually-hidden" for="text">Mensagem</label>
+        <input id="text" name="text" type="text" autocomplete="off" maxlength="500" placeholder="Escreva uma mensagem" required>
+        <button type="submit" id="send">Enviar</button>
+      </form>
+    </main>
+
+    <aside class="desk" aria-labelledby="desk-title">
+      <h2 id="desk-title">Painel da recepção</h2>
+      <p class="desk-empty" id="desk-empty">Quando o bot passar uma conversa pra equipe, ela aparece aqui.</p>
+      <ol class="tickets" id="tickets"></ol>
+    </aside>
+
+  </div>
+
+  <footer class="foot">
+    Projeto de portfólio de <a href="https://github.com/RafaelChagas01/bot-atendimento-clinica" rel="noopener noreferrer" target="_blank">Rafael Chagas</a>.
+    Python, FastAPI e API do Claude.
+  </footer>
+
+  <script src="demo.js"></script>
+</body>
+</html>
